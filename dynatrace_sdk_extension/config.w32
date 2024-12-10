@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("dynatrace_sdk_extension", "for dynatrace_sdk_extension support", "no");
+
+// Otherwise, use ARG_ENABLE
+ARG_ENABLE("dynatrace_sdk_extension", "enable dynatrace_sdk_extension support", "no");
+
+if (PHP_DYNATRACE_SDK_EXTENSION != "no") {
+	EXTENSION("dynatrace_sdk_extension", "dynatrace_sdk_extension.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+}
+
