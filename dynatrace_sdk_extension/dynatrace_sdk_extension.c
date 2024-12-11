@@ -49,11 +49,22 @@ PHP_FUNCTION(confirm_dynatrace_sdk_extension_compiled)
 	RETURN_STR(strg);
 }
 
+PHP_FUNCTION(start_trace) {
+	onesdk_tracer_start(tracer);
+}
 
 // Function implementation
 PHP_FUNCTION(simple_trace) {
+	setenv("ONESDK_AGENT_LIB_PATH", "/opt/dynatrace/oneagent/agent/bin/1.303.62.20241129-131342/linux-x86-64/", 1);
 	onesdk_result_t const onesdk_init_result = onesdk_initialize();
     //long a, b;
+
+	// printf("%d", onesdk_init_result);
+	// if (onesdk_init_result != ONESDK_SUCCESS) {
+    //     // Handle initialization error
+    //     printf("OneAgent SDK initialization failed with error code: %d\n", onesdk_init_result);
+    // }
+	//checkresult(onesdk_init_result, "  initialize");
 	onesdk_tracer_handle_t const tracer = onesdk_outgoingremotecalltracer_create(
         onesdk_asciistr("remote service method"),
         onesdk_asciistr("logical service name"),
@@ -61,7 +72,7 @@ PHP_FUNCTION(simple_trace) {
         ONESDK_CHANNEL_TYPE_TCP_IP,           /* channel type     */
         onesdk_asciistr("localhost:12345")    /* channel endpoint, host/ip:port in case of TCP_IP */ );
 	
-	long a = deu_merda("123");
+	//	long a = deu_merda("123");
 	
 	onesdk_tracer_start(tracer);
 	sleep(3);

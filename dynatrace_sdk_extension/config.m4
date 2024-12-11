@@ -17,7 +17,7 @@ PHP_ARG_WITH([onesdk], [for onesdk support], [AS_HELP_STRING([--with-onesdk], [I
 
 if test "$PHP_ONESDK" != "no"; then
 
-    LIBPATH=/home/david/workspace/github/OneAgent-SDK-for-C
+    LIBPATH=/home/ec2-user/OneAgent-SDK-for-C-1.7.1
     LIBNAME=onesdk_static
     LIBSYMBOL=onesdk_initialize
 
