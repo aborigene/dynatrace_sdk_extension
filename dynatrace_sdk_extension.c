@@ -49,10 +49,6 @@ PHP_FUNCTION(confirm_dynatrace_sdk_extension_compiled)
 	RETURN_STR(strg);
 }
 
-PHP_FUNCTION(start_trace) {
-	onesdk_tracer_start(tracer);
-}
-
 // Function implementation
 PHP_FUNCTION(simple_trace) {
 	setenv("ONESDK_AGENT_LIB_PATH", "/opt/dynatrace/oneagent/agent/bin/1.303.62.20241129-131342/linux-x86-64/", 1);
@@ -75,6 +71,7 @@ PHP_FUNCTION(simple_trace) {
 	//	long a = deu_merda("123");
 	
 	onesdk_tracer_start(tracer);
+	printf("inside trace...\n");
 	sleep(3);
 	onesdk_tracer_end(tracer);
 
