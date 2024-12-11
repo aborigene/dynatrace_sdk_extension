@@ -9,7 +9,7 @@ This is a work in progress and we still need to figure out why the agent is not 
 First you need to have the following on your environment:
 
 1. Fully working PHP devel packages, either install the source through a package manager or by fully building PHP on you system
-      1. To install you can follow this (document)[https://php.watch/articles/compile-php-fedora-rhel-centos]
+    1. To install you can follow this (document)[https://php.watch/articles/compile-php-fedora-rhel-centos]
 2. Build tools gcc, make etc...
 3. OneAgent SDK available on the disk
 
