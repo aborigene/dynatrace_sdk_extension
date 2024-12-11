@@ -16,11 +16,22 @@ dnl Otherwise use enable:
 PHP_ARG_WITH([onesdk], [for onesdk support], [AS_HELP_STRING([--with-onesdk], [Include onesdk support])])
 
 if test "$PHP_ONESDK" != "no"; then
-    PHP_ADD_INCLUDE([/home/ec2-user/OneAgent-SDK-for-C-1.7.1/include])
-    PHP_ADD_LIBRARY_WITH_PATH([onesdk], [/home/ec2-user/OneAgent-SDK-for-C-1.7.1/lib], [ONESDK_SHARED_LIBADD])
-    PHP_ADD_LIBRARY([onesdk], [ONESDK_SHARED_LIBADD])
-    PHP_SUBST([MYLIB_ONESDK_LIBADD])
-    AC_DEFINE([HAVE_ONESDK], [1], [Whether you have onesdk])
+
+    LIBPATH=/home/david/workspace/github/OneAgent-SDK-for-C
+    LIBNAME=onesdk_static
+    LIBSYMBOL=onesdk_initialize
+
+     PHP_CHECK_LIBRARY($LIBNAME, $LIBSYMBOL,
+  [
+    PHP_ADD_INCLUDE($LIBPATH/include)
+    PHP_ADD_LIBRARY_WITH_PATH($LIBNAME, $LIBPATH/lib/linux-x86_64, DYNATRACE_SDK_EXTENSION_SHARED_LIBADD)
+    PHP_SUBST(DYNATRACE_SDK_EXTENSION_SHARED_LIBADD)
+    AC_DEFINE(HAVE_ONESDK,1,[ ])
+  ],[
+    AC_MSG_ERROR([wrong $LIBNAME lib version or lib not found in $LIBPATH])
+  ],[
+    -L$LIBPATH/lib/linux-x86_64 -l$LIBNAME -ldl
+  ])
 fi
 
 PHP_ARG_ENABLE(dynatrace_sdk_extension, whether to enable dynatrace_sdk_extension support,
