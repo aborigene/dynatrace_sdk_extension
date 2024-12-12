@@ -39,3 +39,16 @@ This will load the extension and the ```simple_trace()``` function will be avail
 ### Known problems
 
 This is a working in progress and right now the function to load the agent does not work, we need to understand why this happens, any help with that is much apreciated.
+
+### Extra tests
+
+There is a ```python_wrapper``` directory on this repo, this is just to test the same process we are doing with PHP but now on Python.
+
+To make this run, execute the following:
+
+1. ```gcc -I<OneAgentSDK Path>/include -L<OneAgentSDK Path>/lib/linux-x86_64 -shared -o liboneagent_wrapper.so -fPIC wrapper.c -lonesdk_shared```
+      1. Change the directories above to the ones on your environment
+2. Run the python example: ```python3 example.py```
+  	  1. This will bring the script up and will generate a trace simulating a remote call
+
+We need to make this work for PHP, and then add extra instrumentation to PHP code
